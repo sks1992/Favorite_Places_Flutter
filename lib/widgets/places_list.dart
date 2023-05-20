@@ -1,3 +1,4 @@
+import 'package:favorite_places_app/screen/places_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../model/place.dart';
@@ -21,17 +22,27 @@ class PlacesList extends StatelessWidget {
       );
     }
     return ListView.builder(
-        itemCount: places.length,
-        itemBuilder: (ctc, index) {
-          return ListTile(
-            title: Text(
-              places[index].title,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: Theme.of(context).colorScheme.onBackground),
-            ),
-          );
-        });
+      itemCount: places.length,
+      itemBuilder: (ctc, index) {
+        return ListTile(
+          title: Text(
+            places[index].title,
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+          ),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => PlaceDetail(
+                  place: places[index],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }
