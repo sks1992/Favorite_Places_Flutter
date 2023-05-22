@@ -25,11 +25,22 @@ class PlacesList extends StatelessWidget {
       itemCount: places.length,
       itemBuilder: (ctc, index) {
         return ListTile(
+          leading: CircleAvatar(
+            radius: 20,
+            backgroundImage: FileImage(places[index].image),
+          ),
           title: Text(
             places[index].title,
             style: Theme.of(context)
                 .textTheme
                 .titleMedium!
+                .copyWith(color: Theme.of(context).colorScheme.onBackground),
+          ),
+          subtitle: Text(
+            places[index].location.address!,
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
                 .copyWith(color: Theme.of(context).colorScheme.onBackground),
           ),
           onTap: () {
